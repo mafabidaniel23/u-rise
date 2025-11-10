@@ -454,6 +454,67 @@
             text-decoration: none;
         }
 
+        /* Important Note Section */
+        .important-note {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .important-note::before {
+            content: '!';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #ffc107;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .important-note h4 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-note h4 i {
+            color: #856404;
+        }
+
+        .important-note p {
+            color: #856404;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .important-note ul {
+            color: #856404;
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .important-note li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .important-note strong {
+            color: #856404;
+        }
+
         /* Agreement Section - NEW DESIGN */
         .agreement-container {
             max-width: 800px;
@@ -887,6 +948,10 @@
                 padding: 25px 20px;
             }
             
+            .important-note {
+                padding: 20px 15px;
+            }
+            
             .alert-content {
                 margin: 20% auto;
                 padding: 30px 20px;
@@ -952,6 +1017,14 @@
             .agreement-card h3 {
                 font-size: 20px;
             }
+            
+            .important-note {
+                padding: 18px 12px;
+            }
+            
+            .important-note h4 {
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 400px) {
@@ -969,6 +1042,10 @@
             
             .payment-method i {
                 font-size: 28px;
+            }
+            
+            .important-note {
+                padding: 15px 10px;
             }
         }
     </style>
@@ -1202,6 +1279,23 @@
                 </form>
             </div>
 
+            <!-- Important Note Section -->
+            <div class="important-note">
+                <h4><i class="fas fa-exclamation-circle"></i> IMPORTANT: Manual File Attachment Required</h4>
+                <p><strong>Please read carefully before submitting your application:</strong></p>
+                <p>After clicking the submit button, your email client will open with a pre-filled application email. However, due to browser security restrictions, your uploaded files cannot be automatically attached.</p>
+                
+                <p><strong>You MUST manually attach your documents before sending the email:</strong></p>
+                <ul>
+                    <li>Look for the "Attach" or "Paperclip" icon in your email</li>
+                    <li>Attach your CV/Resume file</li>
+                    <li>Attach your Cover Letter file (if uploaded)</li>
+                    <li>Verify both files are attached before sending</li>
+                </ul>
+                
+                <p><strong>Your application will not be processed without the attached documents.</strong> If you encounter any issues, please email your documents directly to <strong>Urisecareers@gmail.com</strong> with your full name in the subject line.</p>
+            </div>
+
             <!-- Agreement Section - NEW SEPARATE DESIGN -->
             <div class="agreement-container">
                 <div class="agreement-card">
@@ -1217,7 +1311,8 @@
 
                 <div class="agreement-card success-fee-card">
                     <h3><i class="fas fa-chart-line"></i> Success Fee Structure</h3>
-                    <p><strong>Success Fee Rate:</strong>A success fee of 20% will be deducted from your monthly salary for a period of six (6) months following your successful employment placement. This deduction represents the agreed service fee as outlined in the terms and conditions of your placement.</p>
+                    <p><strong>Success Fee Rate:</strong> The success fee rate is defined in the client's separate service agreement but will be structured as a percentage of the client's salary over an initial period.</p>
+                    <p><strong>Example:</strong> 10% for the first 6 months of employment.</p>
                     <p><em>Note: The success fee is only payable upon successful employment placement.</em></p>
                 </div>
 
@@ -1568,7 +1663,6 @@
             const subject = `New Job Seeker Application - ${formData.firstName} ${formData.lastName}`;
             const body = `
 New Job Seeker Application Received:
-NOTE: ATTACH HERE MANUALLY YOUR CV AND COVER LETTER BEFORE SENDING THIS EMAIL
 
 Personal Information:
 - Name: ${formData.firstName} ${formData.lastName}
@@ -1589,7 +1683,7 @@ Application Details:
 - Service Fee: UGX 50,000 (Pending Payment)
 - Agreement Accepted: Yes
 
-Please contact the applicant to provide payment instructions and begin the service process.
+IMPORTANT: Please manually attach the CV and Cover Letter files before sending this email.
 
 Thank you!
 U-RISE Careers System
