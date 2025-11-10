@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>U-RISE CAREERS Ltd. | Empowering Jobseekers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         :root {
             --navy-blue: #0a1f44;
@@ -112,7 +111,6 @@
             padding: 100px 0;
             text-align: center;
         }
-    
 
         .hero h2 {
             font-size: 48px;
@@ -240,11 +238,13 @@
             padding: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-           
         }
 
         .service-icon {
@@ -261,7 +261,6 @@
         .service-icon i {
             font-size: 30px;
             color: var(--accent);
-            
         }
 
         .service-card h3 {
@@ -272,6 +271,30 @@
 
         .service-card p {
             color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .service-btn {
+            background: linear-gradient(135deg, var(--accent), #3a5ec0);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .service-btn:hover {
+            background: linear-gradient(135deg, #3a5ec0, var(--accent));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 110, 224, 0.3);
         }
 
         /* How It Works Section */
@@ -380,6 +403,7 @@
             text-align: center;
             cursor: pointer;
             transition: border-color 0.3s;
+            position: relative;
         }
 
         .file-upload:hover {
@@ -402,6 +426,13 @@
             color: var(--text-light);
         }
 
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: flex-start;
@@ -421,6 +452,67 @@
         .checkbox-group a {
             color: var(--accent);
             text-decoration: none;
+        }
+
+        /* Agreement Section */
+        .agreement-section {
+            background-color: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .agreement-section h3 {
+            color: var(--navy-blue);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .agreement-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .fee-highlight {
+            background: linear-gradient(135deg, #4a6ee0, #3a5ec0);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-method {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        .payment-method i {
+            font-size: 24px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .success-fee {
+            background-color: #e8f5e8;
+            border: 1px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
         }
 
         /* Footer */
@@ -481,7 +573,6 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
-            
         }
 
         .social-links a {
@@ -509,8 +600,171 @@
             font-size: 14px;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            padding: 20px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--white);
+        }
+
+        .close:hover {
+            color: var(--accent);
+        }
+
+        .modal-body {
+            padding: 30px;
+            max-height: calc(90vh - 100px);
+            overflow-y: auto;
+        }
+
+        .modal-body h3 {
+            color: var(--navy-blue);
+            margin: 25px 0 15px 0;
+            font-size: 20px;
+        }
+
+        .modal-body p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Service Detail Styles */
+        .service-detail {
+            margin-bottom: 25px;
+        }
+
+        .service-detail h4 {
+            color: var(--navy-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .benefits-list {
+            background-color: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .benefits-list h4 {
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+        }
+
+        .benefits-list ul {
+            margin: 0;
+        }
+
+        /* Success Alert Modal */
+        .alert-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+        }
+
+        .alert-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 40px 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .alert-content i {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .alert-content h3 {
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .alert-content p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .alert-actions {
+            margin-top: 25px;
+        }
+
         /* Responsive Styles */
-    @media (max-width: 992px) {
+        @media (max-width: 992px) {
             .about-content {
                 flex-direction: column;
             }
@@ -530,7 +784,7 @@
             }
         }
 
-    @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .header-container {
                 flex-direction: row;
                 justify-content: space-between;
@@ -583,10 +837,23 @@
                 flex-direction: column;
                 gap: 0;
             }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .alert-content {
+                margin: 20% auto;
+                padding: 30px 20px;
+            }
         }
 
-
-    @media (max-width: 576px) {
+        @media (max-width: 576px) {
             .section-title h2 {
                 font-size: 28px;
             }
@@ -618,18 +885,24 @@
             .btn {
                 margin-bottom: 2rem;
             }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .alert-content {
+                margin: 25% auto;
+                padding: 25px 15px;
+            }
         }
-    
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <!-- <div class="logo-placeholder" style="width: 55px; height: 55px; background-color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
-                    <span style="color: var(--navy-blue); font-weight: bold;">U-RISE</span>
-                </div> -->
                 <img src="logo.jpg" alt="logo">
                 <h1>U-RISE <span>CAREERS</span></h1>
             </div>
@@ -694,6 +967,7 @@
                     </div>
                     <h3>Personal Branding</h3>
                     <p>We create compelling CVs, cover letters, and LinkedIn profiles that showcase your unique value proposition to potential employers.</p>
+                    <button class="service-btn" data-service="personal-branding">Explore Service →</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -701,6 +975,7 @@
                     </div>
                     <h3>Market Access</h3>
                     <p>We provide access to both public and hidden job opportunities, giving you an edge over the competition.</p>
+                    <button class="service-btn" data-service="market-access">Explore Service →</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -708,6 +983,7 @@
                     </div>
                     <h3>Application Management</h3>
                     <p>We apply to dozens of relevant jobs on your behalf, saving you time and increasing your chances of success.</p>
+                    <button class="service-btn" data-service="application-management">Explore Service →</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -715,6 +991,7 @@
                     </div>
                     <h3>Expert Coaching</h3>
                     <p>We provide elite interview preparation and salary negotiation coaching to help you secure the best offers.</p>
+                    <button class="service-btn" data-service="expert-coaching">Explore Service →</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -722,15 +999,16 @@
                     </div>
                     <h3>Skills Development</h3>
                     <p>Training programs focused on digital literacy, communication, and professional readiness.</p>
+                    <button class="service-btn" data-service="skills-development">Explore Service →</button>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-globe-africa"></i>
                     </div>
-                    <h3>Regional Job Outreach Programs</h3>
+                    <h3>Regional Job Outreach</h3>
                     <p>We extend career and job placement opportunities to communities across Uganda through outreach initiatives.</p>
+                    <button class="service-btn" data-service="regional-outreach">Explore Service →</button>
                 </div>
-                
             </div>
         </div>
     </section>
@@ -745,8 +1023,8 @@
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Register</h3>
-                    <p>Sign up and complete your profile with your skills, experience, and career goals.</p>
+                    <h3>Register & Pay</h3>
+                    <p>Sign up and pay the UGX 50,000 fee to establish our professional relationship.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
@@ -800,50 +1078,101 @@
                         <label for="profession">Profession/Field</label>
                         <input type="text" id="profession" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label for="experience">Years of Experience</label>
-                        <select id="experience" class="form-control" required>
-                            <option value="">Select Experience Level</option>
-                            <option value="0-2">0-2 years</option>
-                            <option value="3-5">3-5 years</option>
-                            <option value="6-10">6-10 years</option>
-                            <option value="10+">10+ years</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="education">Highest Education Level</label>
-                        <select id="education" class="form-control" required>
-                            <option value="">Select Education Level</option>
-                            <option value="high-school">High School</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="bachelors">Bachelor's Degree</option>
-                            <option value="masters">Master's Degree</option>
-                            <option value="phd">PhD</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="experience">Years of Experience</label>
+                            <select id="experience" class="form-control" required>
+                                <option value="">Select Experience Level</option>
+                                <option value="0-2">0-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="6-10">6-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="education">Highest Education Level</label>
+                            <select id="education" class="form-control" required>
+                                <option value="">Select Education Level</option>
+                                <option value="high-school">High School</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="bachelors">Bachelor's Degree</option>
+                                <option value="masters">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Upload Your Documents</label>
-                        <div class="file-upload" id="cv-upload">
+                        <div class="file-upload" id="cv-upload-area">
                             <i class="fas fa-file-upload"></i>
                             <p>Upload Your CV/Resume</p>
                             <span>PDF, DOC, DOCX (Max 5MB)</span>
                             <input type="file" id="cv-file" accept=".pdf,.doc,.docx" style="display: none;">
+                            <div class="file-name" id="cv-file-name"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="file-upload" id="cover-letter-upload">
+                        <div class="file-upload" id="cover-letter-upload-area">
                             <i class="fas fa-file-alt"></i>
                             <p>Upload Cover Letter (Optional)</p>
                             <span>PDF, DOC, DOCX (Max 5MB)</span>
                             <input type="file" id="cover-letter-file" accept=".pdf,.doc,.docx" style="display: none;">
+                            <div class="file-name" id="cover-letter-file-name"></div>
                         </div>
                     </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="terms" required>
-                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+
+                    <!-- Agreement Section -->
+                    <div class="agreement-section">
+                        <h3>Service Agreement & Payment</h3>
+                        <div class="agreement-content">
+                            <p><strong>By submitting this application, you agree to the following terms:</strong></p>
+                            
+                            <div class="fee-highlight">
+                                <h4>Initial Service Fee: UGX 50,000</h4>
+                                <p>This one-time, non-refundable fee establishes our professional relationship and initiates our services.</p>
+                            </div>
+
+                            <div class="success-fee">
+                                <h4>Success Fee Structure</h4>
+                                <p><strong>Success Fee Rate:</strong> The success fee rate is defined in the client's separate service agreement but will be structured as a percentage of the client's salary over an initial period, for example, 10% for the first 6 months of employment.</p>
+                                <p><em>Note: The success fee is only payable upon successful employment placement.</em></p>
+                            </div>
+
+                            <h4>Available Payment Methods:</h4>
+                            <div class="payment-methods">
+                                <div class="payment-method">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <h5>MTN Mobile Money</h5>
+                                    <p>0772 123 456</p>
+                                </div>
+                                <div class="payment-method">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <h5>Airtel Money</h5>
+                                    <p>0752 123 456</p>
+                                </div>
+                                <div class="payment-method">
+                                    <i class="fas fa-university"></i>
+                                    <h5>Bank Transfer</h5>
+                                    <p>Stanbic Bank<br>Account: 9034567890</p>
+                                </div>
+                                <div class="payment-method">
+                                    <i class="fab fa-paypal"></i>
+                                    <h5>PayPal</h5>
+                                    <p>paypal.me/urisecareers</p>
+                                </div>
+                            </div>
+
+                            <p><strong>Payment Instructions:</strong> After submitting this form, you will receive an email with detailed payment instructions. Your application will be processed once payment is confirmed.</p>
+                        </div>
                     </div>
-                    <button type="submit" class="btn" style="width: 100%;">Submit Application</button>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreement" required>
+                        <label for="agreement">I understand and agree to pay the UGX 50,000 initial service fee and accept the <a href="javascript:void(0)" class="terms-link">Terms of Service</a> and <a href="javascript:void(0)" class="privacy-link">Privacy Policy</a></label>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%;">Submit Application & Proceed to Payment</button>
                 </form>
             </div>
         </div>
@@ -857,10 +1186,10 @@
                     <h3>U-RISE CAREERS</h3>
                     <p>Uganda's first reverse-recruiting platform, empowering job seekers and transforming recruitment in East Africa and beyond.</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/?lang=en"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://x.com/urise_careers?s=11"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/u-rise-careers-ltd-b1b6a4391"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.tiktok.com/@urise_careers?_r=1&_t=ZM-91FeVxLoncW"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -874,20 +1203,18 @@
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Our Services</h3>
+                    <h3>Legal</h3>
                     <ul>
-                        <li><a href="#services">Personal Branding</a></li>
-                        <li><a href="#services">Market Access</a></li>
-                        <li><a href="#services">Application Management</a></li>
-                        <li><a href="#services">Expert Coaching</a></li>
-                        <li><a href="#services">Salary Negotiation</a></li>
+                        <li><a href="javascript:void(0)" class="terms-link">Terms & Conditions</a></li>
+                        <li><a href="javascript:void(0)" class="privacy-link">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Kampala, Uganda</p>
-                    <p><i class="fas fa-phone"></i> +256 780 424 948</p>
-                    <p><i class="fas fa-envelope"></i> info@urisecareers.com</p>
+                    <p><i class="fas fa-phone"></i> +256 700 123 456</p>
+                    <p><i class="fas fa-envelope"></i> Urisecareers@gmail.com</p>
                 </div>
             </div>
             <div class="copyright">
@@ -896,27 +1223,327 @@
         </div>
     </footer>
 
+    <!-- Success Alert Modal -->
+    <div id="successAlert" class="alert-modal">
+        <div class="alert-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>Application Submitted Successfully!</h3>
+            <p>Thank you for choosing U-RISE Careers! We have received your application and will contact you within 24 hours to discuss the next steps.</p>
+            <p><strong>Please check your email for confirmation and payment instructions.</strong></p>
+            <div class="alert-actions">
+                <button class="btn" onclick="closeSuccessAlert()" style="min-width: 120px;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Detail Modals -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="serviceModalTitle">Service Details</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="serviceModalBody">
+                <!-- Content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>U-RISE CAREERS Ltd. - Client Terms and Conditions</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p><strong>These Terms and Conditions govern the provision of reverse-recruiting and career agency services by U-RISE CAREERS Ltd. to the client (the job seeker).</strong></p>
+                
+                <h3>1. Scope of Service (Our Role)</h3>
+                <p><strong>1.1 Reverse-Recruiting Model:</strong> U-RISE CAREERS operates as a reverse-recruiting platform. We explicitly represent the job seeker as our client, functioning as their dedicated career agent.</p>
+                <p><strong>1.2 Service Deliverables:</strong> Our services encompass managing the entire job search process, including:</p>
+                <ul>
+                    <li><strong>Personal Brand Building:</strong> Creation or optimization of CVs, cover letters, and professional social media profiles (e.g., LinkedIn).</li>
+                    <li><strong>Job Search and Application:</strong> Actively searching and applying for jobs on the client's behalf, including access to hidden job market opportunities.</li>
+                    <li><strong>Coaching and Negotiation:</strong> Providing coaching for interviews and assisting with salary negotiation.</li>
+                </ul>
+                <p><strong>1.3 Target Audience:</strong> Services are designed for and targeted towards fresh graduates/entry-level professionals, mid-career individuals seeking better opportunities, and professionals re-entering the workforce.</p>
+
+                <h3>2. Fees and Payment Model</h3>
+                <p><strong>2.1 Initial Service Fee:</strong> Clients shall pay a flat fee of UGX 50,000 for basic services to initiate the career agency relationship. This fee is non-refundable.</p>
+                <p><strong>2.2 Success Fee:</strong> The primary fee structure is based on results. A success fee will become due and payable once the client is employed.</p>
+                <p><strong>2.3 Success Fee Rate:</strong> The success fee rate is defined in the client's separate service agreement but will be structured as a percentage of the client's salary over an initial period, for example, 10% for the first 6 months of employment.</p>
+
+                <h3>3. Client Expectations and Guarantees</h3>
+                <p><strong>3.1 No Guarantee of Placement:</strong> The client acknowledges that U-RISE CAREERS is responsible for maximizing opportunity and preparation, but job placement is not guaranteed. Services are rendered to maximize the client's chances of success in a competitive environment.</p>
+                <p><strong>3.2 Client Cooperation:</strong> The client must fully cooperate with U-RISE CAREERS agents, providing timely information, attending coaching sessions, and acting professionally during all stages of the recruitment process.</p>
+
+                <h3>4. Data Usage and Privacy</h3>
+                <p><strong>4.1 Data Monetization:</strong> The client acknowledges that U-RISE CAREERS utilizes a data monetization revenue stream.</p>
+                <p><strong>4.2 Aggregated Insights:</strong> Client data (including career progression, salary levels, and job search behavior) may be collected, aggregated, and sold as market insights to employers and research firms. This data will be anonymized and presented in aggregate form, ensuring individual client identity is protected when sold commercially.</p>
+
+                <h3>5. Termination and Governing Law</h3>
+                <p><strong>5.1 Termination:</strong> Either party may terminate the agreement according to terms outlined in the client's specific service contract.</p>
+                <p><strong>5.2 Governing Law and Jurisdiction:</strong> These terms shall be governed by the laws of Uganda and shall be adjudicated in the relevant jurisdiction within East Africa.</p>
+                
+                <div class="modal-actions">
+                    <button class="btn" id="acceptTerms">I Accept</button>
+                    <button class="btn btn-outline" id="closeTerms">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Service details data
+        const serviceDetails = {
+            'personal-branding': {
+                title: 'Personal Branding',
+                description: 'We transform your professional identity into a powerful personal brand that stands out in today\'s competitive job market.',
+                details: [
+                    'Professional CV optimization tailored to your industry',
+                    'Compelling cover letter creation for specific job applications',
+                    'LinkedIn profile enhancement with keyword optimization',
+                    'Professional portfolio development (if applicable)',
+                    'Personal branding statement and elevator pitch creation'
+                ],
+                benefits: [
+                    'Increased visibility to recruiters and hiring managers',
+                    'Higher application-to-interview conversion rates',
+                    'Stronger professional online presence',
+                    'Clear articulation of your unique value proposition',
+                    'Consistent messaging across all professional platforms'
+                ]
+            },
+            'market-access': {
+                title: 'Market Access',
+                description: 'Gain exclusive access to both advertised and hidden job opportunities through our extensive network and market intelligence.',
+                details: [
+                    'Access to unadvertised "hidden" job market opportunities',
+                    'Partnerships with top employers across various industries',
+                    'Early notification of job openings before public posting',
+                    'Industry-specific job market insights and trends',
+                    'Direct introductions to hiring managers and recruiters'
+                ],
+                benefits: [
+                    'Access to 70% more job opportunities than public listings',
+                    'Reduced competition for exclusive opportunities',
+                    'Faster application-to-interview timelines',
+                    'Industry-specific targeting for better job matches',
+                    'Direct connections that bypass traditional application processes'
+                ]
+            },
+            'application-management': {
+                title: 'Application Management',
+                description: 'We handle the entire job application process on your behalf, saving you time while maximizing your opportunities.',
+                details: [
+                    'Customized job application strategy development',
+                    'Bulk application to relevant positions matching your profile',
+                    'Application tracking and follow-up management',
+                    'Personalized outreach to hiring managers',
+                    'Application status monitoring and reporting'
+                ],
+                benefits: [
+                    'Save 15-20 hours per week on job searching',
+                    '5x more applications submitted than individual efforts',
+                    'Systematic follow-up on all applications',
+                    'Reduced application burnout and stress',
+                    'Comprehensive tracking of all job search activities'
+                ]
+            },
+            'expert-coaching': {
+                title: 'Expert Coaching',
+                description: 'Receive personalized coaching from industry experts to excel in interviews and negotiate the best compensation packages.',
+                details: [
+                    'One-on-one interview preparation sessions',
+                    'Mock interviews with industry-specific scenarios',
+                    'Salary negotiation strategy and practice',
+                    'Body language and communication skills training',
+                    'Industry-specific technical interview preparation'
+                ],
+                benefits: [
+                    'Increased confidence in interview situations',
+                    'Higher success rates in technical and behavioral interviews',
+                    'Better compensation packages through expert negotiation',
+                    'Improved professional communication skills',
+                    'Personalized feedback from experienced coaches'
+                ]
+            },
+            'skills-development': {
+                title: 'Skills Development',
+                description: 'Enhance your professional capabilities with targeted training programs designed to make you more marketable.',
+                details: [
+                    'Digital literacy and software proficiency training',
+                    'Professional communication and presentation skills',
+                    'Industry-specific technical skill enhancement',
+                    'Soft skills development (teamwork, leadership, problem-solving)',
+                    'Certification preparation and guidance'
+                ],
+                benefits: [
+                    'Increased employability across multiple industries',
+                    'Higher earning potential with enhanced skills',
+                    'Better adaptation to evolving job market demands',
+                    'Improved confidence in professional capabilities',
+                    'Competitive edge over other job seekers'
+                ]
+            },
+            'regional-outreach': {
+                title: 'Regional Job Outreach',
+                description: 'Extending career opportunities to communities across Uganda through targeted outreach and community partnerships.',
+                details: [
+                    'Community-based career workshops and seminars',
+                    'Partnerships with local educational institutions',
+                    'Mobile career counseling services in rural areas',
+                    'Digital skills training for underserved communities',
+                    'Local employer networking and job placement initiatives'
+                ],
+                benefits: [
+                    'Increased access to job opportunities in rural areas',
+                    'Community economic development through employment',
+                    'Reduced urban migration by creating local opportunities',
+                    'Enhanced digital literacy across diverse communities',
+                    'Stronger connections between local talent and employers'
+                ]
+            }
+        };
+
+        // File upload variables
+        let cvFile = null;
+        let coverLetterFile = null;
+
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('show');
         });
 
         // File upload functionality
-        document.getElementById('cv-upload').addEventListener('click', function() {
+        document.getElementById('cv-upload-area').addEventListener('click', function() {
             document.getElementById('cv-file').click();
         });
 
-        document.getElementById('cover-letter-upload').addEventListener('click', function() {
+        document.getElementById('cover-letter-upload-area').addEventListener('click', function() {
             document.getElementById('cover-letter-file').click();
+        });
+
+        // Handle CV file selection
+        document.getElementById('cv-file').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                cvFile = this.files[0];
+                document.getElementById('cv-file-name').textContent = `Selected: ${cvFile.name}`;
+                document.getElementById('cv-file-name').style.display = 'block';
+            }
+        });
+
+        // Handle Cover Letter file selection
+        document.getElementById('cover-letter-file').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                coverLetterFile = this.files[0];
+                document.getElementById('cover-letter-file-name').textContent = `Selected: ${coverLetterFile.name}`;
+                document.getElementById('cover-letter-file-name').style.display = 'block';
+            }
         });
 
         // Form submission
         document.getElementById('jobseeker-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your application! We will contact you soon.');
-            this.reset();
+            
+            if (!document.getElementById('agreement').checked) {
+                alert('Please agree to the terms and conditions and payment agreement to continue.');
+                return false;
+            }
+
+            // Check if CV is uploaded
+            if (!cvFile) {
+                alert('Please upload your CV/Resume before submitting.');
+                return false;
+            }
+
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('first-name').value,
+                lastName: document.getElementById('last-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                profession: document.getElementById('profession').value,
+                experience: document.getElementById('experience').value,
+                education: document.getElementById('education').value,
+                cvFileName: cvFile ? cvFile.name : 'Not uploaded',
+                coverLetterFileName: coverLetterFile ? coverLetterFile.name : 'Not uploaded',
+                timestamp: new Date().toLocaleString()
+            };
+
+            // Create email content
+            const subject = `New Job Seeker Application - ${formData.firstName} ${formData.lastName}`;
+            const body = `
+New Job Seeker Application Received:
+
+Personal Information:
+- Name: ${formData.firstName} ${formData.lastName}
+- Email: ${formData.email}
+- Phone: ${formData.phone}
+- Profession: ${formData.profession}
+
+Professional Background:
+- Experience: ${formData.experience}
+- Education: ${formData.education}
+
+Uploaded Documents:
+- CV/Resume: ${formData.cvFileName}
+- Cover Letter: ${formData.coverLetterFileName}
+
+Application Details:
+- Submitted: ${formData.timestamp}
+- Service Fee: UGX 50,000 (Pending Payment)
+- Agreement Accepted: Yes
+
+Please contact the applicant to provide payment instructions and begin the service process.
+
+Thank you!
+U-RISE Careers System
+            `.trim();
+
+            // Create FormData object to handle file attachments
+            const emailFormData = new FormData();
+            emailFormData.append('firstName', formData.firstName);
+            emailFormData.append('lastName', formData.lastName);
+            emailFormData.append('email', formData.email);
+            emailFormData.append('phone', formData.phone);
+            emailFormData.append('profession', formData.profession);
+            emailFormData.append('experience', formData.experience);
+            emailFormData.append('education', formData.education);
+            emailFormData.append('timestamp', formData.timestamp);
+            
+            // Add files if they exist
+            if (cvFile) {
+                emailFormData.append('cv', cvFile);
+            }
+            if (coverLetterFile) {
+                emailFormData.append('coverLetter', coverLetterFile);
+            }
+
+            // For now, we'll use the simple mailto approach since FormData can't be sent via mailto
+            // In a real implementation, you would use a server-side script to handle the file uploads
+            
+            // Create mailto link with basic information
+            const mailtoLink = `mailto:Urisecareers@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+
+            // Show success alert
+            showSuccessAlert();
         });
+
+        // Success Alert functions
+        function showSuccessAlert() {
+            document.getElementById('successAlert').style.display = 'block';
+        }
+
+        function closeSuccessAlert() {
+            document.getElementById('successAlert').style.display = 'none';
+            // Refresh the page
+            location.reload();
+        }
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -940,8 +1567,144 @@
                 }
             });
         });
+
+        // Service Modal functionality
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceModalTitle = document.getElementById('serviceModalTitle');
+        const serviceModalBody = document.getElementById('serviceModalBody');
+        const serviceButtons = document.querySelectorAll('.service-btn');
+
+        // Function to open service modal
+        function openServiceModal(serviceId) {
+            const service = serviceDetails[serviceId];
+            if (service) {
+                serviceModalTitle.textContent = service.title;
+                
+                let modalContent = `
+                    <div class="service-detail">
+                        <p><strong>${service.description}</strong></p>
+                    </div>
+                    
+                    <div class="service-detail">
+                        <h4>What's Included:</h4>
+                        <ul>`;
+                
+                service.details.forEach(detail => {
+                    modalContent += `<li>${detail}</li>`;
+                });
+                
+                modalContent += `</ul>
+                    </div>
+                    
+                    <div class="benefits-list">
+                        <h4>Key Benefits:</h4>
+                        <ul>`;
+                
+                service.benefits.forEach(benefit => {
+                    modalContent += `<li>${benefit}</li>`;
+                });
+                
+                modalContent += `</ul>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn" onclick="scrollToContact()">Get Started Now</button>
+                        <button class="btn btn-outline" onclick="closeServiceModal()">Close</button>
+                    </div>`;
+                
+                serviceModalBody.innerHTML = modalContent;
+                serviceModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Function to close service modal
+        function closeServiceModal() {
+            serviceModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Function to scroll to contact section
+        function scrollToContact() {
+            closeServiceModal();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add event listeners to service buttons
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                openServiceModal(serviceId);
+            });
+        });
+
+        // Close service modal when clicking X
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                const modal = this.closest('.modal');
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close service modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === serviceModal) {
+                closeServiceModal();
+            }
+            if (event.target === document.getElementById('successAlert')) {
+                closeSuccessAlert();
+            }
+        });
+
+        // Terms and Conditions Modal functionality
+        const termsModal = document.getElementById('termsModal');
+        const termsLinks = document.querySelectorAll('.terms-link');
+        const privacyLinks = document.querySelectorAll('.privacy-link');
+        const acceptTermsBtn = document.getElementById('acceptTerms');
+        const closeTermsBtn = document.getElementById('closeTerms');
+
+        // Function to open terms modal
+        function openTermsModal() {
+            termsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close terms modal
+        function closeTermsModal() {
+            termsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Add event listeners to all terms links
+        termsLinks.forEach(link => {
+            link.addEventListener('click', openTermsModal);
+        });
+
+        // Add event listeners to privacy links (for now they also open terms modal)
+        privacyLinks.forEach(link => {
+            link.addEventListener('click', openTermsModal);
+        });
+
+        // Close modal when clicking accept
+        if (acceptTermsBtn) {
+            acceptTermsBtn.addEventListener('click', function() {
+                document.getElementById('agreement').checked = true;
+                closeTermsModal();
+            });
+        }
+
+        // Close modal when clicking close button
+        if (closeTermsBtn) {
+            closeTermsBtn.addEventListener('click', closeTermsModal);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === termsModal) {
+                closeTermsModal();
+            }
+        });
     </script>
 </body>
-
 </html>
-
