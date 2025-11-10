@@ -454,65 +454,100 @@
             text-decoration: none;
         }
 
-        /* Agreement Section */
-        .agreement-section {
-            background-color: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px 0;
+        /* Agreement Section - NEW DESIGN */
+        .agreement-container {
+            max-width: 800px;
+            margin: 40px auto;
         }
 
-        .agreement-section h3 {
+        .agreement-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+        }
+
+        .agreement-card h3 {
             color: var(--navy-blue);
             margin-bottom: 20px;
             font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .agreement-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
+        .agreement-card h3 i {
+            color: var(--accent);
         }
 
-        .fee-highlight {
+        .fee-card {
             background: linear-gradient(135deg, #4a6ee0, #3a5ec0);
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 20px 0;
-            font-weight: 600;
+            border-left: 4px solid #3a5ec0;
         }
 
-        .payment-methods {
+        .fee-card h3,
+        .fee-card p {
+            color: white;
+        }
+
+        .success-fee-card {
+            background-color: #e8f5e8;
+            border-left: 4px solid #4caf50;
+        }
+
+        .payment-card {
+            background-color: #f8f9fa;
+        }
+
+        .payment-methods-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
 
         .payment-method {
             background-color: white;
-            padding: 15px;
+            padding: 20px 15px;
             border-radius: 8px;
-            border: 1px solid #dee2e6;
             text-align: center;
+            border: 1px solid #e9ecef;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .payment-method i {
-            font-size: 24px;
+            font-size: 32px;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .success-fee {
-            background-color: #e8f5e8;
-            border: 1px solid #4caf50;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
+        .payment-method h5 {
+            color: var(--navy-blue);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .payment-method p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .agreement-checkbox {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
         }
 
         /* Footer */
@@ -843,8 +878,13 @@
                 margin: 5% auto;
             }
             
-            .payment-methods {
-                grid-template-columns: 1fr;
+            .payment-methods-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            
+            .agreement-card {
+                padding: 25px 20px;
             }
             
             .alert-content {
@@ -859,7 +899,7 @@
             }
             
             .form-container {
-                padding: 25px;
+                padding: 25px 20px;
             }
             
             .service-card {
@@ -893,6 +933,42 @@
             .alert-content {
                 margin: 25% auto;
                 padding: 25px 15px;
+            }
+            
+            .payment-methods-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .payment-method {
+                padding: 15px;
+            }
+            
+            .agreement-card {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .agreement-card h3 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .form-container {
+                padding: 20px 15px;
+            }
+            
+            .agreement-card {
+                padding: 18px 12px;
+            }
+            
+            .payment-method {
+                padding: 12px 8px;
+            }
+            
+            .payment-method i {
+                font-size: 28px;
             }
         }
     </style>
@@ -1052,6 +1128,8 @@
                 <h2>Get Started Today</h2>
                 <p>Fill out the form below and take the first step towards your dream career.</p>
             </div>
+            
+            <!-- Application Form -->
             <div class="form-container">
                 <form id="jobseeker-form">
                     <div class="form-row">
@@ -1121,59 +1199,73 @@
                             <div class="file-name" id="cover-letter-file-name"></div>
                         </div>
                     </div>
+                </form>
+            </div>
 
-                    <!-- Agreement Section -->
-                    <div class="agreement-section">
-                        <h3>Service Agreement & Payment</h3>
-                        <div class="agreement-content">
-                            <p><strong>By submitting this application, you agree to the following terms:</strong></p>
-                            
-                            <div class="fee-highlight">
-                                <h4>Initial Service Fee: UGX 50,000</h4>
-                                <p>This one-time, non-refundable fee establishes our professional relationship and initiates our services.</p>
-                            </div>
+            <!-- Agreement Section - NEW SEPARATE DESIGN -->
+            <div class="agreement-container">
+                <div class="agreement-card">
+                    <h3><i class="fas fa-handshake"></i> Service Agreement</h3>
+                    <p><strong>By submitting this application, you agree to our professional service terms and payment structure outlined below.</strong></p>
+                </div>
 
-                            <div class="success-fee">
-                                <h4>Success Fee Structure</h4>
-                                <p><strong>Success Fee Rate:</strong> The success fee rate is defined in the client's separate service agreement but will be structured as a percentage of the client's salary over an initial period, for example, 10% for the first 6 months of employment.</p>
-                                <p><em>Note: The success fee is only payable upon successful employment placement.</em></p>
-                            </div>
+                <div class="agreement-card fee-card">
+                    <h3><i class="fas fa-money-bill-wave"></i> Initial Service Fee</h3>
+                    <h4>UGX 50,000</h4>
+                    <p>This one-time, non-refundable fee establishes our professional relationship and initiates our comprehensive career services.</p>
+                </div>
 
-                            <h4>Available Payment Methods:</h4>
-                            <div class="payment-methods">
-                                <div class="payment-method">
-                                    <i class="fas fa-mobile-alt"></i>
-                                    <h5>MTN Mobile Money</h5>
-                                    <p>0772 123 456</p>
-                                </div>
-                                <div class="payment-method">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                    <h5>Airtel Money</h5>
-                                    <p>0752 123 456</p>
-                                </div>
-                                <div class="payment-method">
-                                    <i class="fas fa-university"></i>
-                                    <h5>Bank Transfer</h5>
-                                    <p>Stanbic Bank<br>Account: 9034567890</p>
-                                </div>
-                                <div class="payment-method">
-                                    <i class="fab fa-paypal"></i>
-                                    <h5>PayPal</h5>
-                                    <p>paypal.me/urisecareers</p>
-                                </div>
-                            </div>
+                <div class="agreement-card success-fee-card">
+                    <h3><i class="fas fa-chart-line"></i> Success Fee Structure</h3>
+                    <p><strong>Success Fee Rate:</strong>A success fee of 20% will be deducted from your monthly salary for a period of six (6) months following your successful employment placement. This deduction represents the agreed service fee as outlined in the terms and conditions of your placement.</p>
+                    <p><em>Note: The success fee is only payable upon successful employment placement.</em></p>
+                </div>
 
-                            <p><strong>Payment Instructions:</strong> After submitting this form, you will receive an email with detailed payment instructions. Your application will be processed once payment is confirmed.</p>
+                <div class="agreement-card payment-card">
+                    <h3><i class="fas fa-credit-card"></i> Payment Methods</h3>
+                    <p>Choose your preferred payment method to get started:</p>
+                    
+                    <div class="payment-methods-grid">
+                        <div class="payment-method">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h5>MTN Mobile Money</h5>
+                            <p>0772 123 456</p>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h5>Airtel Money</h5>
+                            <p>0752 123 456</p>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-university"></i>
+                            <h5>Bank Transfer</h5>
+                            <p>Stanbic Bank<br>9034567890</p>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-paypal"></i>
+                            <h5>PayPal</h5>
+                            <p>paypal.me/urisecareers</p>
                         </div>
                     </div>
+                    
+                    <p style="margin-top: 20px; font-size: 14px; color: var(--text-light);">
+                        <strong>Payment Instructions:</strong> After submitting your application, you will receive an email with detailed payment instructions. Your application will be processed once payment is confirmed.
+                    </p>
+                </div>
 
+                <div class="agreement-checkbox">
                     <div class="checkbox-group">
                         <input type="checkbox" id="agreement" required>
-                        <label for="agreement">I understand and agree to pay the UGX 50,000 initial service fee and accept the <a href="javascript:void(0)" class="terms-link">Terms of Service</a> and <a href="javascript:void(0)" class="privacy-link">Privacy Policy</a></label>
+                        <label for="agreement">
+                            I understand and agree to pay the UGX 50,000 initial service fee and accept the 
+                            <a href="javascript:void(0)" class="terms-link">Terms of Service</a> and 
+                            <a href="javascript:void(0)" class="privacy-link">Privacy Policy</a>
+                        </label>
                     </div>
-
-                    <button type="submit" class="btn" style="width: 100%;">Submit Application & Proceed to Payment</button>
-                </form>
+                    <button type="submit" form="jobseeker-form" class="btn" style="width: 100%; margin-top: 20px;">
+                        Submit Application & Proceed to Payment
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -1187,9 +1279,9 @@
                     <p>Uganda's first reverse-recruiting platform, empowering job seekers and transforming recruitment in East Africa and beyond.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://x.com/urise_careers?s=11"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/in/u-rise-careers-ltd-b1b6a4391"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.tiktok.com/@urise_careers?_r=1&_t=ZM-91FeVxLoncW"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -1476,6 +1568,7 @@
             const subject = `New Job Seeker Application - ${formData.firstName} ${formData.lastName}`;
             const body = `
 New Job Seeker Application Received:
+NOTE: ATTACH HERE MANUALLY YOUR CV AND COVER LETTER BEFORE SENDING THIS EMAIL
 
 Personal Information:
 - Name: ${formData.firstName} ${formData.lastName}
@@ -1502,29 +1595,7 @@ Thank you!
 U-RISE Careers System
             `.trim();
 
-            // Create FormData object to handle file attachments
-            const emailFormData = new FormData();
-            emailFormData.append('firstName', formData.firstName);
-            emailFormData.append('lastName', formData.lastName);
-            emailFormData.append('email', formData.email);
-            emailFormData.append('phone', formData.phone);
-            emailFormData.append('profession', formData.profession);
-            emailFormData.append('experience', formData.experience);
-            emailFormData.append('education', formData.education);
-            emailFormData.append('timestamp', formData.timestamp);
-            
-            // Add files if they exist
-            if (cvFile) {
-                emailFormData.append('cv', cvFile);
-            }
-            if (coverLetterFile) {
-                emailFormData.append('coverLetter', coverLetterFile);
-            }
-
-            // For now, we'll use the simple mailto approach since FormData can't be sent via mailto
-            // In a real implementation, you would use a server-side script to handle the file uploads
-            
-            // Create mailto link with basic information
+            // Create mailto link
             const mailtoLink = `mailto:Urisecareers@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
             // Open email client
